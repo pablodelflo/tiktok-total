@@ -1,0 +1,2 @@
+BASE_PATH_COLECCIONES = "C:\proyectos\Python\tiktok_bot\COLECCIONES"
+DEBUG_PORT = "127.0.0.1:9222"
