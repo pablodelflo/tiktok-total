@@ -1,9 +1,16 @@
 from core.app import TikTokApp
 from services.videos_service import VideoService
+from config import PROFILE_TIKTOK
+#from core.driver_manager import get_driver
+
 
 def main():
 
     app = TikTokApp()
+
+    print(app.navegar(PROFILE_TIKTOK))
+
+    #print("")
 
     print("0 - Salir de la app")
     print("1 - Descargar vídeos/fotos de una colección")
@@ -14,7 +21,7 @@ def main():
 
     if opcion == "1":
         VideoService(app).descargar_coleccion(
-            input("URL colección: ")
+            #input("URL colección: ")
         )
 
     elif opcion == "0":
