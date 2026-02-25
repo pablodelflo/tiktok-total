@@ -24,7 +24,7 @@ class VideoService:
         numero_colecciones = int(re.search(r"\d+",self.driver.find_element(By.ID, "collections").text).group())
         list_colecciones = self.driver.find_elements(By.CSS_SELECTOR, 'div[data-e2e="collection-card-footer"]')
 
-        for coleccion in list_colecciones:
+        for idx, coleccion in enumerate(list_colecciones, start=1):
             spans = coleccion.find_elements(By.TAG_NAME, "span")
 
             if len(spans) >= 2:
@@ -33,21 +33,31 @@ class VideoService:
                 cantidad = int(cantidad_texto.split()[0])  # 345
 
                 colecciones.append({
+                    "id": idx,
                     "nombre": nombre,
                     "cantidad": cantidad
                 })
         
-        print(f"\nTu perfil tiene {numero_colecciones} colección/es")
+        print(f"\nTu perfil tiene {numero_colecciones} colección/es:")
 
         for collection in colecciones:
             if collection['cantidad']>0:
-                print(f"{collection['nombre']} → {collection['cantidad']} vídeo/s.")
+                print(f"{collection['id']} - {collection['nombre']} → {collection['cantidad']} vídeo/s.")
             else:
                 zeroCollection.append(collection['nombre'])
 
         print(f"\nAdemás, las siguientes colecciones están vacías:\n")
         for zC in zeroCollection:
             print(zC)
+
+        idColeccion = input("Introduce el ID de la colección que quieres descargar: ")
+        idColeccion =+1 
+        nombreColeccion = colecciones[idColeccion]['nombre']
+        urlColeccion = self.driver.find_elements(By.CSS_SELECTOR, 'div[data-e2e="collection-card-footer"]')
+
+        print(f"La colección es {nombreColeccion} cuyo ID real es {idColeccion}")
+
+        return(urlColeccion)
  
 
     def descargar_coleccion(self, url):
