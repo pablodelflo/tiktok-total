@@ -8,7 +8,7 @@ def main():
 
     app = TikTokApp()
 
-    print(app.navegar(PROFILE_TIKTOK))
+    print(app.bienvenida(PROFILE_TIKTOK))
 
     #print("")
 
