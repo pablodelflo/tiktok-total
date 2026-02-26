@@ -101,11 +101,27 @@ class TikTokApp:
         for zC in zeroCollection:
             print(f"[X] {zC.title()}")
 
-        idColeccion = int(input("Introduce el ID de la colección que quieres descargar: "))
+        idColeccion = int(input("\nIntroduce el ID de la colección que quieres descargar: "))
         idColeccion -=1 
         nombreColeccion = colecciones[idColeccion]['nombre']
         urlColeccion = colecciones[idColeccion]['url']
+        numeroVideosCol = colecciones[idColeccion]['cantidad']
 
-        print(f"La colección es {nombreColeccion.title()} cuyo ID es {idColeccion} y su URL es {urlColeccion}")
+        print(f"\nLa colección es {nombreColeccion.title()} tiene {numeroVideosCol} vídeos y su URL es {urlColeccion}")
 
-        return urlColeccion, nombreColeccion
+        print("¿Quieres descargar las descripciones de los vídeos de esta colección?")
+        descripcion = input("¿Si/No?")
+
+        if descripcion.upper() == 'SI':
+            descripciones = True
+        else:
+            descripciones = False
+        
+        return urlColeccion, nombreColeccion, descripciones
+    
+
+    def prepara_estructura(self, nombreColeccion,descripciones):
+        if descripciones:
+            print("")
+        else:
+            print()

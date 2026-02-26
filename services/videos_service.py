@@ -14,8 +14,8 @@ class VideoService:
         self.base_path = app.base_path
  
 
-    def descargar_coleccion(self, urlColeccion, nombreColeccion):
-        print(f"\nDe acuerdo, quieres descargar la colección {nombreColeccion.title()}, cuya url es {urlColeccion}. Vamos para allá")
+    def descargar_coleccion(self, urlColeccion, nombreColeccion, descripciones=False):
+        print(f"\nEspera mientras nos dirigimos a la colección {nombreColeccion.title()}")
         self.driver.get(urlColeccion)
         print("Ya estamos aquí")
         # Aquí va tu lógica actual
