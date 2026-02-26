@@ -32,34 +32,41 @@ class VideoService:
                 cantidad_texto = spans[1].text.strip()   # "345 vídeos"
                 cantidad = int(cantidad_texto.split()[0])  # 345
 
+                # subir al <a> padre
+                enlace = coleccion.find_element(By.XPATH, "./ancestor::a")
+                url = enlace.get_attribute("href")
+
                 colecciones.append({
                     "id": idx,
                     "nombre": nombre,
-                    "cantidad": cantidad
+                    "cantidad": cantidad,
+                    "url": url
                 })
         
         print(f"\nTu perfil tiene {numero_colecciones} colección/es:")
 
         for collection in colecciones:
             if collection['cantidad']>0:
-                print(f"{collection['id']} - {collection['nombre']} → {collection['cantidad']} vídeo/s.")
+                print(f"{collection['id']} - {collection['nombre']} → {collection['cantidad']} vídeo/s. URL: {collection['url']}")
             else:
                 zeroCollection.append(collection['nombre'])
 
         print(f"\nAdemás, las siguientes colecciones están vacías:\n")
         for zC in zeroCollection:
-            print(zC)
+            print(f"[X] {zC}")
 
-        idColeccion = input("Introduce el ID de la colección que quieres descargar: ")
-        idColeccion =+1 
+        idColeccion = int(input("Introduce el ID de la colección que quieres descargar: "))
+        idColeccion -=1 
         nombreColeccion = colecciones[idColeccion]['nombre']
-        urlColeccion = self.driver.find_elements(By.CSS_SELECTOR, 'div[data-e2e="collection-card-footer"]')
+        urlColeccion = colecciones[idColeccion]['url']
 
-        print(f"La colección es {nombreColeccion} cuyo ID real es {idColeccion}")
+        print(f"La colección es {nombreColeccion} cuyo ID es {idColeccion} y su URL es {urlColeccion}")
 
-        return(urlColeccion)
+        return urlColeccion, nombreColeccion
  
 
-    def descargar_coleccion(self, url):
-        print("Descargando vídeos...")
+    def descargar_coleccion(self, urlColeccion, nombreColeccion):
+        print(f"\nDe acuerdo, quieres descargar la colección {nombreColeccion}, cuya url es {urlColeccion}. Vamos para allá")
+        self.driver.get(urlColeccion)
+        print("Ya estamos aquí")
         # Aquí va tu lógica actual
