@@ -20,7 +20,7 @@ def main():
     opcion = input("Elige opción: ")
 
     if opcion == "1":
-        urlColeccion, nombreColeccion = VideoService(app).define_coleccion(PROFILE_TIKTOK)
+        urlColeccion, nombreColeccion = app.define_coleccion(PROFILE_TIKTOK)
         VideoService(app).descargar_coleccion(urlColeccion,nombreColeccion)
 
     elif opcion == "0":
