@@ -47,26 +47,26 @@ class VideoService:
 
         for collection in colecciones:
             if collection['cantidad']>0:
-                print(f"{collection['id']} - {collection['nombre']} → {collection['cantidad']} vídeo/s. URL: {collection['url']}")
+                print(f"{collection['id']} - {collection['nombre'].title()} → {collection['cantidad']} vídeo/s. URL: {collection['url']}")
             else:
                 zeroCollection.append(collection['nombre'])
 
         print(f"\nAdemás, las siguientes colecciones están vacías:\n")
         for zC in zeroCollection:
-            print(f"[X] {zC}")
+            print(f"[X] {zC.title()}")
 
         idColeccion = int(input("Introduce el ID de la colección que quieres descargar: "))
         idColeccion -=1 
         nombreColeccion = colecciones[idColeccion]['nombre']
         urlColeccion = colecciones[idColeccion]['url']
 
-        print(f"La colección es {nombreColeccion} cuyo ID es {idColeccion} y su URL es {urlColeccion}")
+        print(f"La colección es {nombreColeccion.title()} cuyo ID es {idColeccion} y su URL es {urlColeccion}")
 
         return urlColeccion, nombreColeccion
  
 
     def descargar_coleccion(self, urlColeccion, nombreColeccion):
-        print(f"\nDe acuerdo, quieres descargar la colección {nombreColeccion}, cuya url es {urlColeccion}. Vamos para allá")
+        print(f"\nDe acuerdo, quieres descargar la colección {nombreColeccion.title()}, cuya url es {urlColeccion}. Vamos para allá")
         self.driver.get(urlColeccion)
         print("Ya estamos aquí")
         # Aquí va tu lógica actual
