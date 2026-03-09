@@ -238,6 +238,8 @@ class TikTokApp:
         for zC in zeroCollection:
             print(f"[X] {zC.title()}")
 
+        print("Si deseas volver al menú principal, pulsa 0")
+
         idColeccion = int(input("\nIntroduce el ID de la colección en la que quieres desmarcar favoritos: "))
         idColeccion -=1 
         nombreColeccion = colecciones[idColeccion]['nombre']
