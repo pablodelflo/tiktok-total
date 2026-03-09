@@ -6,7 +6,6 @@ from urllib.parse import urlparse
 from time import sleep
 import re
 import os
-#import glob
 from pathlib import Path
 
 class TikTokApp:
