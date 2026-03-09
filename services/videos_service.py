@@ -25,7 +25,8 @@ class VideoService:
             full_name_video = f"{full_name}.mp4"
 
             comando = [
-                "yt-dlp",
+                #"yt-dlp",
+                "py", "-3.11", "-m", "yt_dlp",
                 "--cookies", "cookies.txt",
                 "-o", full_name_video,
                 "-P", str(full_path_video),

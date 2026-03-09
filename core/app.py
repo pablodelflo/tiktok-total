@@ -76,6 +76,8 @@ class TikTokApp:
 
     def define_coleccion(self, url):
         print("Vamos a ver las colecciones de tu perfil\n")
+        if self.driver.current_url != PROFILE_TIKTOK:
+            self.driver.get(PROFILE_TIKTOK)
         goto_fav = self.driver.find_element(By.XPATH, "//*[contains(text(), 'Favoritos')]").click()
         goto_colecciones = self.driver.find_element(By.XPATH, "//*[contains(text(), 'Colecciones')]").click()
         self.full_scroll()
