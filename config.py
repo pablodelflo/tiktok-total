@@ -1,7 +1,7 @@
 from pathlib import Path
-BASE_PATH_COLECCIONES = Path("C:/proyectos/Python/tiktok_total/COLECCIONES")
+BASE_PATH_COLECCIONES = Path("C:/XXXXXXX/XXXXXXX")
 DEBUG_PORT = "127.0.0.1:9222"
-PROFILE_TIKTOK = "https://www.tiktok.com/@lk2_89"
+PROFILE_TIKTOK = "https://www.tiktok.com/@XXXXXXXX"
 SCROLL_PAUSE_TIME = 2.5
 MAX_EXTRA_SCROLLS = 2  # Scrolls adicionales después del final
 MAX_THREADS = 4
