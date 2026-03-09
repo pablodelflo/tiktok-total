@@ -259,31 +259,6 @@ class TikTokApp:
             collectionPath = BASE_PATH_COLECCIONES
 
         return collectionPath, existePath
-    
-    '''
-        def getDescargados(self, collection_path):
-            videosPath = collection_path / "videos"
-            fotosPath = collection_path / "fotos"
-            videos = []
-            fotos = []
-
-            for fichero in videosPath.iterdir():
-                if fichero.is_file():
-                    video = fichero.name.split(" - ")
-                    idUsuario = video[0]
-                    idVideo = video[1].split(".mp4")[0]
-                    urlVideoBase = f"https://www.tiktok.com/@{idUsuario}/video/{idVideo}"
-                    videos.append(urlVideoBase)
-            
-            for carpeta in fotosPath.iterdir():
-                foto = carpeta.name.split(" - ")
-                idUsuario = foto[0]
-                idFoto = foto[1]
-                urlFotoBase = f"https://www.tiktok.com/@{idUsuario}/photo/{idFoto}"
-                fotos.append(urlFotoBase)
-
-            return videos, fotos
-    '''
 
 
     def getDescargados(self, collection_path):
