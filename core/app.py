@@ -238,17 +238,22 @@ class TikTokApp:
         for zC in zeroCollection:
             print(f"[X] {zC.title()}")
 
-        print("Si deseas volver al menú principal, pulsa 0")
+        print("\n==Si deseas volver al menú principal, pulsa 0==")
 
         idColeccion = int(input("\nIntroduce el ID de la colección en la que quieres desmarcar favoritos: "))
-        idColeccion -=1 
-        nombreColeccion = colecciones[idColeccion]['nombre']
-        urlColeccion = colecciones[idColeccion]['url']
-        numeroVideosCol = colecciones[idColeccion]['cantidad']
 
-        print(f"\nLa colección es {nombreColeccion.title()} tiene {numeroVideosCol} vídeos y su URL es {urlColeccion}")
+        if idColeccion == 0:
+            print("\nVolviendo al menú principal")
+            return None
+        else:
+            idColeccion -=1 
+            nombreColeccion = colecciones[idColeccion]['nombre']
+            urlColeccion = colecciones[idColeccion]['url']
+            numeroVideosCol = colecciones[idColeccion]['cantidad']
 
-        return urlColeccion, nombreColeccion
+            print(f"\nLa colección es {nombreColeccion.title()} tiene {numeroVideosCol} vídeos y su URL es {urlColeccion}")
+
+            return urlColeccion, nombreColeccion
     
 
     def checkEstructura(self, nombreColeccion):

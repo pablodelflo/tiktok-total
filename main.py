@@ -29,7 +29,10 @@ def main():
             VideoService(app).descargar_coleccion(urlColeccion, nombreColeccion, descripciones)
 
         elif opcion == 2:
-            urlColeccion, nombreColeccion = app.coleccionFavoritos(PROFILE_TIKTOK)
+            result = app.coleccionFavoritos(PROFILE_TIKTOK)
+            if result is None:
+                continue
+            urlColeccion, nombreColeccion = result
             FavService(app).desmarcarFavoritos(urlColeccion, nombreColeccion)
         
         elif opcion == 0:
