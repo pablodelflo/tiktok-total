@@ -25,11 +25,13 @@ def main():
             print("\nDebes introducir una opción correcta. Vuelve a probar.")
             continue
         if opcion == 1:
-            urlColeccion, nombreColeccion, descripciones = app.define_coleccion(PROFILE_TIKTOK)
+            #urlColeccion, nombreColeccion, descripciones = app.define_coleccion(PROFILE_TIKTOK)
+            urlColeccion, nombreColeccion, descripciones = app.define_coleccion(PROFILE_TIKTOK, getDescripciones = True)
             VideoService(app).descargar_coleccion(urlColeccion, nombreColeccion, descripciones)
 
         elif opcion == 2:
-            result = app.coleccionFavoritos(PROFILE_TIKTOK)
+            #result = app.coleccionFavoritos(PROFILE_TIKTOK)
+            result = app.define_coleccion(PROFILE_TIKTOK)
             if result is None:
                 continue
             urlColeccion, nombreColeccion = result
