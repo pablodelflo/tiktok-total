@@ -34,7 +34,7 @@ def main():
             result = app.define_coleccion(PROFILE_TIKTOK)
             if result is None:
                 continue
-            urlColeccion, nombreColeccion = result
+            urlColeccion, nombreColeccion, _ = result
             FavService(app).desmarcarFavoritos(urlColeccion, nombreColeccion)
         
         elif opcion == 0:
