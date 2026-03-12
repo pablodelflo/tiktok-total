@@ -27,7 +27,8 @@ class VideoService:
             comando = [
                 #"yt-dlp",
                 "py", "-3.11", "-m", "yt_dlp",
-                "--cookies", "cookies.txt",
+                #"--cookies", "cookies.txt",
+                "--cookies-from-browser", "firefox",
                 "-o", full_name_video,
                 "-P", str(full_path_video),
                 video,

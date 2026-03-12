@@ -73,9 +73,6 @@ class FavService:
         totalFotos = len(fotos)
         print(f"\nEsta colección tiene un total de {totalVideos} vídeo/s y {totalFotos} foto/s para desmarcar.")
 
-        #for idx, coleccion in enumerate(list_colecciones, start=1):
-
-        #for video in videos:
         for idx, video in enumerate(videos, start=1):
             self.driver.get(video)
             wait = WebDriverWait(self.driver, 5)
@@ -91,8 +88,6 @@ class FavService:
                 print("Este vídeo no está marcado como favorito")
             sleep(2)
 
-
-        #for foto in fotos:
         for idx, foto in enumerate(fotos, start=1):
             self.driver.get(foto)
             descargaOk, reDownload, colCorrectas, colFallidas  = self.checkFotos(foto, collection_path)
@@ -109,10 +104,25 @@ class FavService:
                     print("Esta foto no está marcada como favorito")
                 sleep(2)
 
-        if colCorrectas and colFallidas:
-            print(f"Hay un total de {colCorrectas} descargas correctas y {colFallidas} descargas erróneas")
-        if reDownload:
-            print(f"Las siguientes colecciones deben volver a descargarse: \n{reDownload}")
+        if totalFotos !=0:
+            if colCorrectas and colFallidas:
+                print(f"Hay un total de {colCorrectas} descargas correctas y {colFallidas} descargas erróneas")
+            if reDownload:
+                print(f"Las siguientes colecciones deben volver a descargarse: \n{reDownload}")
+        
+        if totalFotos==0 and totalVideos==0:
+            print("\nParece que esta colección tiene elementos sin descargar. ¿Quieres proceder a descargarlos?")
+            goDescargas = int(input("1. SI\n2. NO\nIntroduce 1 o 2 para tu respuesta: "))
+            if goDescargas == 1:
+                print("\n¿Quieres descargar también las descripciones?")
+                descripcion = int(input("1. SI\n2. NO\nIntroduce 1 o 2 para tu respuesta: "))
+                if descripcion == 1:
+                    descripciones = True
+                else:
+                    descripciones = False
+
+                self.app.get_enlaces_descripciones(collection_path, descripciones)
+                VideoService(self.app).descarga_videos(collection_path,MAX_THREADS)
 
     
     def desmarcarFavoritos(self, urlColeccion, nombreColeccion):
