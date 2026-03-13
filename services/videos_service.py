@@ -20,14 +20,23 @@ class VideoService:
 
 
     def descargar_un_video(self, video, full_path_video):
+        txt_error = "impersonation"
+
         try:
             full_name = self.app.info_video(video)
             full_name_video = f"{full_name}.mp4"
 
             comando = [
-                #"yt-dlp",
                 "py", "-3.11", "-m", "yt_dlp",
-                #"--cookies", "cookies.txt",
+                "--cookies", "cookies.txt",
+                "-o", full_name_video,
+                "-P", str(full_path_video),
+                video,
+                "-q"
+            ]
+
+            comandoV2 = [
+                "py", "-3.11", "-m", "yt_dlp",
                 "--cookies-from-browser", "firefox",
                 "-o", full_name_video,
                 "-P", str(full_path_video),
@@ -36,8 +45,12 @@ class VideoService:
             ]
 
             result = subprocess.run(comando, capture_output=True, text=True)
-            if result.returncode != 0:
-                return f"❌ Error con {full_name_video}: {result.stderr.strip()}"
+            if result.returncode != 0 and txt_error in result.stderr.strip():
+                print(f"\n❌ Error con {full_name_video}: {result.stderr.strip()}")
+                print("\n==Vamos a probar el método alternativo de descarga==")
+                resultV2 = subprocess.run(comandoV2, capture_output=True, text=True)
+                if resultV2.returncode != 0:
+                    return f"❌ Error con {full_name_video}: {result.stderr.strip()}"
             
             return f"✅ Descargado: {full_name_video}"
         
